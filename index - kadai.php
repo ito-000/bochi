@@ -33,7 +33,7 @@
     </nav>
   </header>
 
-  <form action="insert - kadai.php" method="post">
+  <form action="insert_file - kadai.php" method="post" action="insert_file - kadai.php" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">書籍名</label>
       <input type="text" class="form-control" id="name" name="name">
@@ -46,6 +46,10 @@
       <label for="comment">感想</label>
       <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
     </div>
+    <div class="form-group">
+            <label for="upfile">Image</label>
+            <!-- inputを追加 -->
+            <input type="file" class="form-control-file" id="upfile" name="upfile" accept="image/*">
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>

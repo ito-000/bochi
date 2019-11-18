@@ -1,15 +1,7 @@
 <?php
 //1. DB接続
-$dbn ='mysql:dbname=gsacfd04_db01;charset=utf8;port=3306;host=localhost';
-$user = 'root';
-$pwd = '';
-
-try {
-$pdo = new PDO($dbn, $user, $pwd);
-} catch (PDOException $e) {
-exit('dbError:'.$e->getMessage());
-}
-
+include('functions - kadai.php');
+$pdo = connectToDb();
 
 
 //2. データ表示SQL作成
@@ -24,11 +16,15 @@ if ($status == false) {
   $error = $stmt->errorInfo();
   exit('sqlError:' . $error[2]);
 } else {
+  $view = '';
   //Selectデータの数だけ自動でループしてくれる
   //http://php.net/manual/ja/pdostatement.fetch.php
   while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $view .= '<li class="list-group-item">';
     $view .= '<p>'.$result['name'].'-'.$result['url'].'-'.$result['comment'].'</p>';
+    $view .= '<img src="'.$result['image'].'" alt="" height="150px">';
+    $view .= '<a href="detail - kadai.php?id='.$result['id'].'" class="badge badge-primary">Edit</a>';
+    $view .= '<a href="delete - kadai.php?id='.$result['id'].'" class="badge badge-danger">Delete</a>';
     $view .= '</li>';
   }
 }
